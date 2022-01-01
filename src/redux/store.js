@@ -1,12 +1,29 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, createSerializableStateInvariantMiddleware } from '@reduxjs/toolkit'
+import {
+  persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER,
+} from 'redux-persist'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import throttle from 'lodash/throttle'
+import storageSession from 'redux-persist/lib/storage/session'
+import logger from 'redux-logger';
 
 import rootReducer from './rootReducer'
 
-const composedEnhancer = composeWithDevTools()
+const persistConfig = {
+  key: 'root',
+  storage: storageSession,
+}
 
-const persistedState = loadState();
-const store = createStore(rootReducer, persistedState, composedEnhancer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export default store
+// Not working. Look into it later. Help maybe? https://dev.to/dawnind/persist-redux-state-with-redux-persist-3k0d
+const serializableMiddleware = createSerializableStateInvariantMiddleware({
+  ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+})
+
+const middleware = applyMiddleware(logger, serializableMiddleware);
+
+const store = createStore(persistedReducer, composeWithDevTools(middleware));
+
+const persistor = persistStore(store);
+
+export { store, persistor };

@@ -48,6 +48,8 @@ const PreSignIn = ({ children }) => {
       draggable: true,
       progress: undefined,
     });
+
+    return null;
   }
 
   return children;
