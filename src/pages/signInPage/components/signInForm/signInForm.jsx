@@ -1,17 +1,18 @@
 import React from 'react';
-import { Button, Checkbox, Form, Input, Label } from 'semantic-ui-react';
+import { Button, Form } from 'semantic-ui-react';
 import * as yup from 'yup';
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Link } from "react-router-dom";
 
 import { CustomInput } from 'shared/components';
 import {
   StyledSignInFormBorder, StyledSignInFormContainer,
   StyledTextHolder, StyledText, StyledButtonHolder,
 } from './signInForm.styles';
-email: yup.string().email()
+
 const signInSchema = yup.object().shape({
-  email: yup.string().email('Please enter a valid email address').required('Email is required'),
+  email: yup.string().email('Please enter a valid email address').required('Password is required'),
   password: yup.string().required('Password is required'),
 }).required();
 
@@ -29,14 +30,10 @@ const SignInForm = () => {
       <StyledSignInFormBorder>
         <StyledSignInFormContainer>
           <Form onSubmit={methods.handleSubmit(onSubmitHandler)}>
-            <Form.Field>
-              <CustomInput labelName="Email" name="email" />
-            </Form.Field>
-            <Form.Field>
-              <CustomInput labelName="Password" name="password" type="password" />
-            </Form.Field>
+            <CustomInput labelName="Email" name="email" />
+            <CustomInput labelName="Password" name="password" />
             <StyledTextHolder>
-              <StyledText>Don't have an account?</StyledText><a>Sign Up</a>
+              <StyledText>Don't have an account?</StyledText><Link to="/register">Sign Up</Link>
             </StyledTextHolder>
             <StyledButtonHolder>
               <Button color='blue' type='submit'>Sign In</Button>
