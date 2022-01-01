@@ -34,11 +34,10 @@ const PreSignIn = ({ children }) => {
   const location = useLocation();
   const { status } = useSelector((state) => state.currentUser);
 
+  console.log("PRE SIGN IN CALLED");
+
   if (status === LOGGED_IN_STATUS) {
-    // Redirect them to the /login page, but save the current location they were
-    // trying to go to when they were redirected. This allows us to send them
-    // along to that page after they login, which is a nicer user experience
-    // than dropping them off on the home page.
+    // Redirect them to the current page as you are already logged in
     toast.error('You are already logged in!', {
       position: "top-right",
       autoClose: 3000,
@@ -50,6 +49,7 @@ const PreSignIn = ({ children }) => {
     });
 
     return null;
+    // return <Navigate to={location.pathname} replace />;
   }
 
   return children;

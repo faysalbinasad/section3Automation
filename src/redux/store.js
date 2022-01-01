@@ -5,6 +5,7 @@ import {
 import { composeWithDevTools } from 'redux-devtools-extension'
 import storageSession from 'redux-persist/lib/storage/session'
 import logger from 'redux-logger';
+import thunk from 'redux-thunk'
 
 import rootReducer from './rootReducer'
 
@@ -20,7 +21,7 @@ const serializableMiddleware = createSerializableStateInvariantMiddleware({
   ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 })
 
-const middleware = applyMiddleware(logger, serializableMiddleware);
+const middleware = applyMiddleware(logger, thunk);
 
 const store = createStore(persistedReducer, composeWithDevTools(middleware));
 

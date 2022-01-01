@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 import appUser from 'testData/user.json';
 import { CustomInput } from 'shared/components';
-import { loggedIn } from 'slices/currentUser';
+import { logIn } from 'slices/currentUser';
 
 import {
   StyledSignInFormBorder, StyledSignInFormContainer,
@@ -28,10 +28,21 @@ const SignInForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
+  const onSignIn = (dispatch) => new Promise((resolve, reject) => {
+    dispatch(logIn());
+    resolve();
+  })
+
+  const signIn = () => (dispatch, getState) => (
+    onSignIn(dispatch).then(() => {
+      navigate('/my-products');
+    })
+  )
+
   const onSubmitHandler = ({ email, password }) => {
     if (appUser.email === email && appUser.password === password) {
-      dispatch(loggedIn());
-      navigate('/my-products');
+      dispatch(signIn());
     } else {
       toast.error('Incorrect username or password. Please try again!', {
         position: "top-right",
