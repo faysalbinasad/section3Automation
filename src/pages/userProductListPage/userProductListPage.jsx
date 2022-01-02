@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { ProductCard } from 'shared/components';
 import { randomIdGenerator } from 'utils';
@@ -22,8 +23,20 @@ const UserProductListPage = () => {
   }
 
   const deleteButtonHandler = (id) => {
-    idToDelete.current = id;
-    setItemModalOpen(true);
+    if (userProducts.length === 1) {
+      toast.error('Internal error occurred. Please check the server!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      idToDelete.current = id;
+      setItemModalOpen(true);
+    }
   }
 
   if (userProducts.length === 0) {
