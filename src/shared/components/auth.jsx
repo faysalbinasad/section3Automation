@@ -31,7 +31,6 @@ const RequireAuth = ({ children }) => {
 }
 
 const PreSignIn = ({ children }) => {
-  const location = useLocation();
   const { status } = useSelector((state) => state.currentUser);
 
   // BUG: Uncomment to debug the PreSignIn component

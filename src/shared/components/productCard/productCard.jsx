@@ -9,7 +9,7 @@ import {
 
 const ProductCard = ({ product, showDeleteButton }) => {
   const {
-    id, title, description, categories, created_at, views, purchase_price, rent_price,
+    title, description, categories, created_at, views, purchase_price, rent_price,
     rent_duration
   } = product;
 

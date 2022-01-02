@@ -1,13 +1,11 @@
-import { createStore, applyMiddleware, createSerializableStateInvariantMiddleware } from '@reduxjs/toolkit'
-import {
-  persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER,
-} from 'redux-persist'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import storageSession from 'redux-persist/lib/storage/session'
+import { createStore, applyMiddleware } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import storageSession from 'redux-persist/lib/storage/session';
 import logger from 'redux-logger';
-import thunk from 'redux-thunk'
+import thunk from 'redux-thunk';
 
-import rootReducer from './rootReducer'
+import rootReducer from './rootReducer';
 
 const persistConfig = {
   key: 'root',
@@ -17,9 +15,9 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // Not working. Look into it later. Help maybe? https://dev.to/dawnind/persist-redux-state-with-redux-persist-3k0d
-const serializableMiddleware = createSerializableStateInvariantMiddleware({
-  ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-})
+// const serializableMiddleware = createSerializableStateInvariantMiddleware({
+//   ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+// })
 
 const middleware = applyMiddleware(thunk, logger);
 
