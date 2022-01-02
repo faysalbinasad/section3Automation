@@ -11,7 +11,7 @@ import CustomModal from 'shared/components/customModal/customModal';
 import { StyledProductList, StyledProductCardHolder } from './userProductListPage.styles';
 
 const UserProductListPage = () => {
-  const { userProducts } = useSelector(state => state.userProducts);
+  const userProducts = useSelector(state => state.userProducts);
   const idToDelete = useRef(null);
   const dispatch = useDispatch();
   const [itemModalOpen, setItemModalOpen] = useModal();

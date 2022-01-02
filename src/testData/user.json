@@ -1,4 +1,8 @@
 {
-   "email":"asd@asd.com",
-   "password":"123"
+   "first_name": "Test",
+   "last_name": "User",
+   "address": "123 Test address, Woompa Loopa, ZUC 1234-8765, Narnia",
+   "email": "asd@asd.com",
+   "password": "123",
+   "phone_number": "+123456789"
 }
