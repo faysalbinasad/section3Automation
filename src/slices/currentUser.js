@@ -22,10 +22,14 @@ const currentUserSlice = createSlice({
     loadUser(state) {
       state = { ...state, ...user };
       return state;
+    },
+    editUser(state, action) {
+      state = { ...state, ...action.payload };
+      return state;
     }
   }
 })
 
-export const { logIn, logOut, loadUser } = currentUserSlice.actions
+export const { logIn, logOut, loadUser, editUser } = currentUserSlice.actions
 
 export default currentUserSlice.reducer

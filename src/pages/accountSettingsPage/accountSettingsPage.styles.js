@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledRegistrationPageContainer = styled.div`
+const StyledAccountSettingsPageContainer = styled.div`
   flex: 1 1 auto;
   display: flex;
   justify-content: center;
@@ -8,4 +8,4 @@ const StyledRegistrationPageContainer = styled.div`
   flex-direction: column;
 `
 
-export { StyledRegistrationPageContainer };
+export { StyledAccountSettingsPageContainer };
