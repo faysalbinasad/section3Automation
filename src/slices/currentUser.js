@@ -12,10 +12,10 @@ const currentUserSlice = createSlice({
   initialState,
   reducers: {
     logIn(state, action) {
-      state.status = 'logged_in'
+      state.status = 'logged_in';
     },
     logOut(state, action) {
-      state.status = 'not_logged_in'
+      state.status = 'not_logged_in';
     },
   }
 })

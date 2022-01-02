@@ -1,8 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledAppContainer = styled.div`
   display: flex;
-  height: 100%;
+
+  ${
+    props => props.isPreLogin && css`
+    height: 100%;
+  `}
 `
 
 export { StyledAppContainer };

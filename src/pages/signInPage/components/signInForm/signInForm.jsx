@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import appUser from 'testData/user.json';
 import { CustomInput } from 'shared/components';
 import { logIn } from 'slices/currentUser';
+import { loadProducts } from 'slices/userProducts';
 
 import {
   StyledSignInFormBorder, StyledSignInFormContainer,
@@ -48,6 +49,7 @@ const SignInForm = () => {
       // Thunk implementation didn't help in fixing the PreSignIn bug
       // dispatch(signInThunk());
       dispatch(logIn());
+      dispatch(loadProducts());
       navigate('/my-products');
     } else {
       toast.error('Incorrect username or password. Please try again!', {
