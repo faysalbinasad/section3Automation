@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import appUser from 'testData/user.json';
@@ -28,7 +28,6 @@ const SignInForm = () => {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { status } = useSelector((state) => state.currentUser);
 
 // Thunk implementation didn't help in fixing the PreSignIn bug
 //   const onSignIn = (dispatch) => new Promise((resolve, reject) => {
