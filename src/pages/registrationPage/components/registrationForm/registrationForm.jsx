@@ -54,7 +54,7 @@ const RegistrationForm = () => {
             <CustomInput labelName="Password" name="password" type="password" />
             <CustomInput labelName="Confirm Password" name="confirmPassword" type="password" />
             <StyledTextHolder>
-              <StyledText>Already have an account?</StyledText><Link to="/signin">Sign Up</Link>
+              <StyledText>Already have an account?</StyledText><Link to="/signin">Sign In</Link>
             </StyledTextHolder>
             <StyledButtonHolder>
               <Button color='blue' type='submit'>Register</Button>

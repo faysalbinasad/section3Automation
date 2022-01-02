@@ -2,7 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { SignInPage, RegistrationPage } from './pages';
+import { RequireAuth, PreSignIn } from 'shared/components';
+
+import { SignInPage, RegistrationPage, UserProductListPage } from './pages';
 import { StyledAppContainer } from './App.styles'
 
 function App() {
@@ -10,9 +12,39 @@ function App() {
     <>
       <StyledAppContainer>
         <Routes>
-          <Route path="/" element={<SignInPage />} />
-          <Route path="signin" element={<SignInPage />} />
-          <Route path="register" element={<RegistrationPage />} />
+          <Route
+            path="/"
+            element={
+              // <PreSignIn>
+                <SignInPage />
+              // </PreSignIn>
+            }
+          />
+          <Route
+            path="signin"
+            element={
+              // <PreSignIn>
+                <SignInPage />
+              // </PreSignIn>
+            }
+          />
+          <Route
+            path="register"
+            element={
+              // PreSignIn doesnt work
+              // <PreSignIn>
+                <RegistrationPage />
+              // </PreSignIn>
+            }
+          />
+          <Route
+            path="my-products"
+            element={
+              <RequireAuth >
+                <UserProductListPage />
+              </RequireAuth>
+            } />
+
         </Routes>
       </StyledAppContainer>
       <ToastContainer />
