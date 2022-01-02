@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Button } from 'semantic-ui-react';
 
 import {
@@ -7,9 +6,9 @@ import {
   StyledDescription, StyledCardFooter, StyledMainContent, StyledHeader,
 } from './productCard.styles';
 
-const ProductCard = ({ product, showDeleteButton }) => {
+const ProductCard = ({ product, deleteButtonHandler }) => {
   const {
-    title, description, categories, created_at, views, purchase_price, rent_price,
+    id, title, description, categories, created_at, views, purchase_price, rent_price,
     rent_duration
   } = product;
 
@@ -18,8 +17,8 @@ const ProductCard = ({ product, showDeleteButton }) => {
       <StyledMainContent>
         <StyledHeader>
           <StyledTitle>{title}</StyledTitle>
-          { showDeleteButton &&
-            <Button icon="trash" onClick={() => console.log("Delete")}/>
+          { deleteButtonHandler &&
+            <Button icon="trash" onClick={() => deleteButtonHandler()}/>
           }
         </StyledHeader>
         <StyledCategories>Categories: {categories.map(c => c.name).join(", ")}</StyledCategories>

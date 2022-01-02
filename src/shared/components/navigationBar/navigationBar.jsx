@@ -11,7 +11,7 @@ const NavigationBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [ activeItem, setActiveItem ] = useState('my-products');
-  const [itemModalOpen, setItemModalOpen, toggleModal] = useModal();
+  const [itemModalOpen, setItemModalOpen] = useModal();
 
   const handleItemClick = (e, { name }) => {
     setActiveItem(name);
@@ -32,7 +32,6 @@ const NavigationBar = () => {
         primaryButtonText="Yes I am sure!"
         itemModalOpen={itemModalOpen}
         setItemModalOpen={setItemModalOpen}
-        toggleModal={toggleModal}
       />
       <Menu>
         <Menu.Item
