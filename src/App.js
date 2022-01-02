@@ -15,25 +15,26 @@ function App() {
           <Route
             path="/"
             element={
-              <PreSignIn>
+              // <PreSignIn>
                 <SignInPage />
-              </PreSignIn>
+              // </PreSignIn>
             }
           />
           <Route
             path="signin"
             element={
-              <PreSignIn>
+              // <PreSignIn>
                 <SignInPage />
-              </PreSignIn>
+              // </PreSignIn>
             }
           />
           <Route
             path="register"
             element={
-              <PreSignIn>
+              // PreSignIn doesnt work
+              // <PreSignIn>
                 <RegistrationPage />
-              </PreSignIn>
+              // </PreSignIn>
             }
           />
           <Route

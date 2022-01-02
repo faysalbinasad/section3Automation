@@ -21,7 +21,7 @@ const serializableMiddleware = createSerializableStateInvariantMiddleware({
   ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 })
 
-const middleware = applyMiddleware(logger, thunk);
+const middleware = applyMiddleware(thunk, logger);
 
 const store = createStore(persistedReducer, composeWithDevTools(middleware));
 

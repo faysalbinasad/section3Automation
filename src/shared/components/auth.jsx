@@ -34,7 +34,8 @@ const PreSignIn = ({ children }) => {
   const location = useLocation();
   const { status } = useSelector((state) => state.currentUser);
 
-  console.log("PRE SIGN IN CALLED");
+  // BUG: Uncomment to debug the PreSignIn component
+  // console.log("PRE SIGN IN CALLED", children);
 
   if (status === LOGGED_IN_STATUS) {
     // Redirect them to the current page as you are already logged in
