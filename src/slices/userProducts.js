@@ -2,26 +2,28 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import userProducts from 'testData/userProducts';
 
-const initialState = {
-  userProducts: [],
-};
+const initialState = [];
 
 const userProductsSlice = createSlice({
   name: 'userProducts',
   initialState,
   reducers: {
     deleteProduct(state, action) {
-      state.userProducts = state.userProducts.filter(p => p.id !== action.payload);
+      state = state.filter(p => p.id !== action.payload);
+      return state;
     },
     editProduct(state, action) {
-      const productIndexToEdit = state.userProducts.findIndex(p => p.id === action.payload.id);
-      state.userProducts[productIndexToEdit] = action.payload;
+      const productIndexToEdit = state.findIndex(p => p.id === action.payload.id);
+      state[productIndexToEdit] = action.payload;
+      return state;
     },
     addProduct(state, action) {
-      state.userProducts.push(action.payload);
+      state.push(action.payload);
+      return state;
     },
     loadProducts(state) {
-      state.userProducts = userProducts;
+      state = userProducts;
+      return state;
     },
   }
 })

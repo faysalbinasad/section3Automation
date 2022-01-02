@@ -4,12 +4,12 @@ import * as yup from 'yup';
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch, batch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import appUser from 'testData/user.json';
 import { CustomInput } from 'shared/components';
-import { logIn } from 'slices/currentUser';
+import { logIn, loadUser } from 'slices/currentUser';
 import { loadProducts } from 'slices/userProducts';
 
 import {
@@ -47,8 +47,11 @@ const SignInForm = () => {
     if (appUser.email === email && appUser.password === password) {
       // Thunk implementation didn't help in fixing the PreSignIn bug
       // dispatch(signInThunk());
-      dispatch(logIn());
-      dispatch(loadProducts());
+      batch(() => {
+        dispatch(logIn());
+        dispatch(loadProducts());
+        dispatch(loadUser());
+      })
       navigate('/my-products');
     } else {
       toast.error('Incorrect username or password. Please try again!', {
