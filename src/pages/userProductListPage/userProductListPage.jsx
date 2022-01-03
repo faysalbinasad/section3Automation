@@ -67,10 +67,18 @@ const UserProductListPage = () => {
           userProducts.map(product =>
             <div key={randomIdGenerator()}>
               <StyledProductCardHolder key={randomIdGenerator()}>
-                <ProductCard product={product} deleteButtonHandler={() => deleteButtonHandler(product.id)} />
+                <ProductCard
+                  product={product}
+                  deleteButtonHandler={() => deleteButtonHandler(product.id)}
+                  onClick={() => navigate(`/edit-product/${product.id}`)}
+                />
               </StyledProductCardHolder>
               <StyledProductCardHolder key={randomIdGenerator()}>
-                <ProductCard product={product} deleteButtonHandler={() => deleteButtonHandler(product.id)} />
+                <ProductCard
+                  product={product}
+                  deleteButtonHandler={() => deleteButtonHandler(product.id)}
+                  onClick={() => navigate(`/edit-product/${product.id}`)}
+                />
               </StyledProductCardHolder>
             </div>
           )

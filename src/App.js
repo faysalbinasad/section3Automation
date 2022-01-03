@@ -8,7 +8,7 @@ import { NOT_LOGGED_IN_STATUS } from 'slices/currentUser';
 
 import {
   SignInPage, RegistrationPage, UserProductListPage, AccountSettingsPage, AddProductPage,
-  EditProductPage,
+  EditProductPage, BrowseProductsPage,
 } from './pages';
 import { StyledAppContainer } from './App.styles';
 
@@ -61,6 +61,14 @@ function App() {
             element={
               <RequireAuth >
                 <AddProductPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="browse-products"
+            element={
+              <RequireAuth >
+                <BrowseProductsPage />
               </RequireAuth>
             }
           />

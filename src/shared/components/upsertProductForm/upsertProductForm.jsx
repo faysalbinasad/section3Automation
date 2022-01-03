@@ -94,16 +94,17 @@ const UpsertProductForm = ({ isEdit, product }) => {
             />
             <CustomTextArea labelName="Description" name="description" />
             <StyledPurchaseOptions>
-              <CustomInput name="purchase_price" />
+              <CustomInput labelName={isEdit ? "Purchase Price" : null} name="purchase_price" />
               <StyledRentSection>
                 <StyledRentPriceInputHolder>
-                  <CustomInput name="rent_price" />
+                  <CustomInput labelName={isEdit ? "Rent Price" : null} name="rent_price" />
                 </StyledRentPriceInputHolder>
                 <CustomDropdown
                   name="rent_duration"
                   selection
                   options={RENT_DURATION_OPTIONS}
                   defaultValue={isEdit ? product.rent_duration : ''}
+                  labelName={isEdit ? "Frequency" : null}
                 />
               </StyledRentSection>
             </StyledPurchaseOptions>
