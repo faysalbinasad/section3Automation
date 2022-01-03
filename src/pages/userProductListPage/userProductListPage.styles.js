@@ -12,4 +12,12 @@ const StyledProductCardHolder = styled.div`
   margin-bottom: 10px;
 `
 
-export { StyledProductList, StyledProductCardHolder };
+const StyledButtonHolder = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-right: 10em;
+`;
+
+export { StyledProductList, StyledProductCardHolder, StyledButtonHolder };

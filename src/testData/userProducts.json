@@ -13,11 +13,14 @@
         "name": "Outdoor"
       }
     ],
-    "created_at": "21st August 2020",
+    "created_at": "21/09/2020",
     "views": 156,
     "purchase_price": 500,
     "rent_price": 100,
-    "rent_duration": "daily"
+    "rent_duration": "daily",
+    "is_bought": false,
+    "rent_start_time": null,
+    "rent_end_time": null
   },
   {
     "id": 2,
@@ -29,10 +32,13 @@
         "name": "Electronics"
       }
     ],
-    "created_at": "21st September 2021",
+    "created_at": "15/10/2021",
     "views": 146341,
     "purchase_price": 1500,
     "rent_price": 50,
-    "rent_duration": "hourly"
+    "rent_duration": "hourly",
+    "is_bought": false,
+    "rent_start_time": null,
+    "rent_end_time": null
   }
 ]
