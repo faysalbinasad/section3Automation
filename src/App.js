@@ -4,7 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { RequireAuth, NavigationBar } from 'shared/components';
 
-import { SignInPage, RegistrationPage, UserProductListPage, AccountSettingsPage } from './pages';
+import {
+  SignInPage, RegistrationPage, UserProductListPage, AccountSettingsPage, AddProductPage,
+} from './pages';
 import { StyledAppContainer } from './App.styles';
 
 function App() {
@@ -47,6 +49,14 @@ function App() {
             element={
               <RequireAuth >
                 <UserProductListPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="add-product"
+            element={
+              <RequireAuth >
+                <AddProductPage />
               </RequireAuth>
             }
           />
