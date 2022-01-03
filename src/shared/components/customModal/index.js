@@ -1,1 +1,1 @@
-export { default as CustomModal } from './customModal';
+export { default as CustomModal } from './customModal.jsx';

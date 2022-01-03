@@ -35,6 +35,7 @@ const RegistrationForm = () => {
       draggable: true,
       progress: undefined,
     });
+    console.error("SERVER ERROR: Internal server occurred!");
   }
 
   return(

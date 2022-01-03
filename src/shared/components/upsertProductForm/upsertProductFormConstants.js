@@ -26,4 +26,13 @@ const RENT_DURATION_OPTIONS = [
   },
 ]
 
-export { RENT_DURATION_OPTIONS };
+const INITIAL_UPSERT_PRODUCT_FORM_VALUES = {
+  title: '',
+  description: '',
+  categories: [],
+  purchase_price: '',
+  rent_price: '',
+  rent_duration: '',
+}
+
+export { RENT_DURATION_OPTIONS, INITIAL_UPSERT_PRODUCT_FORM_VALUES };

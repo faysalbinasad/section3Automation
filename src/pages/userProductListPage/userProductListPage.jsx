@@ -26,7 +26,7 @@ const UserProductListPage = () => {
 
   const deleteButtonHandler = (id) => {
     if (userProducts.length === 1) {
-      toast.error('Internal error occurred. Please check the server!', {
+      toast.error('Internal server error occurred. Please check the server!', {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -35,6 +35,7 @@ const UserProductListPage = () => {
         draggable: true,
         progress: undefined,
       });
+      console.error("SERVER ERROR: Undefined method [] for nil:NilClass");
     } else {
       idToDelete.current = id;
       setItemModalOpen(true);
