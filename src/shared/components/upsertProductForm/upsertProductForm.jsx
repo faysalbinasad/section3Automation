@@ -8,30 +8,24 @@ import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CustomInput, CustomTextArea, CustomDropdown } from 'shared/components';
-import { addProduct } from 'slices/userProducts';
+import { addProduct, editProduct } from 'slices/userProducts';
 
 import {
   StyledUpsertProductFormBorder, StyledUpsertProductFormContainer, StyledButtonHolder,
   StyledPurchaseOptions, StyledRentSection, StyledRentPriceInputHolder
 } from './upsertProductForm.styles';
-import {convertDataToDropdownOptions, convertCategoriesForSubmission } from './upsertProductFormHelpers';
-import { RENT_DURATION_OPTIONS } from './upsertProductFormConstants';
+import {convertDataToDropdownOptions, convertCategoriesForSubmission, getSchema } from './upsertProductFormHelpers';
+import { RENT_DURATION_OPTIONS, INITIAL_UPSERT_PRODUCT_FORM_VALUES } from './upsertProductFormConstants';
 
-const upsertProductSchema = yup.object().shape({
-  title: yup.string().required('Last Name is required'),
-  categories: yup.array().of(yup.string()).required("At least one category must be selected"),
-  description: yup.string().required('Description cannot be empty'),
-  purchase_price: yup.number().typeError('Purchase price must be a number').required('Purchase price is required'),
-  rent_price: yup.number().typeError('Rent price must be a number').required('Rent price is required'),
-  rent_duration: yup.string().required('Need to select an option'),
-}).required();
 
-const UpsertProductForm = ({ isEdit }) => {
+
+const UpsertProductForm = ({ isEdit, product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userProducts = useSelector((state) => state.userProducts);
   const methods = useForm({
-    resolver: yupResolver(upsertProductSchema),
+    resolver: yupResolver(getSchema(isEdit)),
+    defaultValues: isEdit ? product : INITIAL_UPSERT_PRODUCT_FORM_VALUES,
   });
 
   const getNewId = () => {
@@ -44,7 +38,7 @@ const UpsertProductForm = ({ isEdit }) => {
   }
 
   const onSubmitHandler = (data) => {
-    if (userProducts.length > 4) {
+    if (userProducts.length > 5) {
       toast.error('Internal error occurred!', {
         position: "top-right",
         autoClose: 3000,
@@ -54,28 +48,33 @@ const UpsertProductForm = ({ isEdit }) => {
         draggable: true,
         progress: undefined,
       });
+      console.error("SERVER ERROR: psql: No space left on device!");
     } else {
       const categoriesForSubmission = convertCategoriesForSubmission(data.categories);
-      dispatch(addProduct({
-        ...data,
-        id: getNewId(),
-        categories: categoriesForSubmission,
-        is_bought: false,
-        rent_start_time: null,
-        rent_end_time: null,
-        views: 0,
-        created_at: new Date().toLocaleDateString('en-GB'),
-      }));
-      toast.success('New product added!', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      navigate('/my-products');
+      if (isEdit) {
+        dispatch(editProduct({ ...product, ...data, categories: categoriesForSubmission }));
+      } else {
+        dispatch(addProduct({
+          ...data,
+          id: getNewId(),
+          categories: categoriesForSubmission,
+          is_bought: false,
+          rent_start_time: null,
+          rent_end_time: null,
+          views: 0,
+          created_at: new Date().toLocaleDateString('en-GB'),
+        }));
+        toast.success('New product added!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        navigate('/my-products');
+      }
     }
   }
 
@@ -91,6 +90,7 @@ const UpsertProductForm = ({ isEdit }) => {
               multiple
               selection
               options={convertDataToDropdownOptions()}
+              defaultValue={isEdit ? product.categories.map(c => c.name) : []}
             />
             <CustomTextArea labelName="Description" name="description" />
             <StyledPurchaseOptions>
@@ -103,6 +103,7 @@ const UpsertProductForm = ({ isEdit }) => {
                   name="rent_duration"
                   selection
                   options={RENT_DURATION_OPTIONS}
+                  defaultValue={isEdit ? product.rent_duration : ''}
                 />
               </StyledRentSection>
             </StyledPurchaseOptions>

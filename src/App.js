@@ -1,16 +1,20 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
+import { useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { RequireAuth, NavigationBar } from 'shared/components';
+import { NOT_LOGGED_IN_STATUS } from 'slices/currentUser';
 
 import {
   SignInPage, RegistrationPage, UserProductListPage, AccountSettingsPage, AddProductPage,
+  EditProductPage,
 } from './pages';
 import { StyledAppContainer } from './App.styles';
 
 function App() {
   const { pathname } = useLocation();
+  const { status } = useSelector((state) => state.currentUser);
   return (
     <>
       {
@@ -61,6 +65,14 @@ function App() {
             }
           />
           <Route
+            path="edit-product/:productId"
+            element={
+              <RequireAuth >
+                <EditProductPage />
+              </RequireAuth>
+            }
+          />
+          <Route
             path="account-settings"
             element={
               <RequireAuth >
@@ -68,7 +80,12 @@ function App() {
               </RequireAuth>
             }
           />
-
+          <Route
+            path="*"
+            element={
+              status === NOT_LOGGED_IN_STATUS ? <SignInPage /> : <UserProductListPage />
+            }
+          />
         </Routes>
       </StyledAppContainer>
       <ToastContainer />
