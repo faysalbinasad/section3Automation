@@ -9,7 +9,7 @@ import {
 const ProductCard = ({ product, deleteButtonHandler, onClick }) => {
   const {
     id, title, description, categories, created_at, views, purchase_price, rent_price,
-    rent_duration
+    rent_duration_type
   } = product;
 
   return(
@@ -24,7 +24,7 @@ const ProductCard = ({ product, deleteButtonHandler, onClick }) => {
         <StyledCategories onClick={onClick}>Categories: { categories.length > 0 ? categories.map(c => c.name).join(", "): "N/A"}</StyledCategories>
         <StyledPriceHolder onClick={onClick}>
           <StyledPurchasePrice>Price: ${purchase_price}</StyledPurchasePrice>
-          <div>Rent: ${rent_price} {rent_duration}</div>
+          <div>Rent: ${rent_price} {rent_duration_type}</div>
         </StyledPriceHolder>
         <StyledDescription onClick={onClick}>Description: {description}</StyledDescription>
       </StyledMainContent>

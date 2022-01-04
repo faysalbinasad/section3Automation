@@ -45,6 +45,13 @@ const NavigationBar = () => {
           onClick={handleItemClick}
         />
         <Menu.Item
+          name='categorize-products'
+          active={activeItem === 'categorize-products'}
+          onClick={() => itemModalOpen()}
+        >
+          Bought/Sold/Borrowed/Lent List
+        </Menu.Item>
+        <Menu.Item
           name='account-settings'
           active={activeItem === 'account-settings'}
           onClick={handleItemClick}

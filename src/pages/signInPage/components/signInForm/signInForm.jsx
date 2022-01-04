@@ -4,13 +4,15 @@ import * as yup from 'yup';
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, batch } from 'react-redux';
+import { useDispatch, batch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import appUser from 'testData/user.json';
 import { CustomInput } from 'shared/components';
 import { logIn, loadUser } from 'slices/currentUser';
 import { loadProducts } from 'slices/userProducts';
+import { loadAllProducts } from 'slices/allProducts';
+import additionalProducts from 'testData/additionalProducts';
 
 import {
   StyledSignInFormBorder, StyledSignInFormContainer,
@@ -28,6 +30,7 @@ const SignInForm = () => {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userProducts = useSelector((state) => state.userProducts);
 
 // Thunk implementation didn't help in fixing the PreSignIn bug
 //   const onSignIn = (dispatch) => new Promise((resolve, reject) => {
@@ -51,6 +54,7 @@ const SignInForm = () => {
         dispatch(logIn());
         dispatch(loadProducts());
         dispatch(loadUser());
+        dispatch(loadAllProducts([...additionalProducts, ...userProducts]));
       })
       navigate('/my-products');
     } else {

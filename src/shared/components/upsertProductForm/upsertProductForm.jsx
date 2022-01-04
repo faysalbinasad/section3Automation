@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CustomInput, CustomTextArea, CustomDropdown } from 'shared/components';
-import { RENT_DURATION_OPTIONS } from 'shared/constants';
+import { RENT_DURATION_TYPE_OPTIONS } from 'shared/constants';
 import { addProduct, editProduct } from 'slices/userProducts';
 
 import {
@@ -22,8 +22,12 @@ const UpsertProductForm = ({ isEdit, product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userProducts = useSelector((state) => state.userProducts);
+  // Bug fix!
+  // const initialProductCategories = product.categories.map(c => c.name);
   const methods = useForm({
     resolver: yupResolver(getSchema(isEdit)),
+    // Bug fix!
+    // defaultValues: isEdit ? { ...product, categories: initialProductCategories } : INITIAL_UPSERT_PRODUCT_FORM_VALUES,
     defaultValues: isEdit ? product : INITIAL_UPSERT_PRODUCT_FORM_VALUES,
   });
 
@@ -57,9 +61,8 @@ const UpsertProductForm = ({ isEdit, product }) => {
           ...data,
           id: getNewId(),
           categories: categoriesForSubmission,
-          is_bought: false,
-          rent_start_time: null,
-          rent_end_time: null,
+          is_purchased: false,
+          rent_history: [],
           views: 0,
           created_at: new Date().toLocaleDateString('en-GB'),
         }));
@@ -99,10 +102,10 @@ const UpsertProductForm = ({ isEdit, product }) => {
                   <CustomInput labelName={isEdit ? "Rent Price" : null} name="rent_price" />
                 </StyledRentPriceInputHolder>
                 <CustomDropdown
-                  name="rent_duration"
+                  name="rent_duration_type"
                   selection
-                  options={RENT_DURATION_OPTIONS}
-                  defaultValue={isEdit ? product.rent_duration : ''}
+                  options={RENT_DURATION_TYPE_OPTIONS}
+                  defaultValue={isEdit ? product.rent_duration_type : ''}
                   labelName={isEdit ? "Frequency" : null}
                 />
               </StyledRentSection>

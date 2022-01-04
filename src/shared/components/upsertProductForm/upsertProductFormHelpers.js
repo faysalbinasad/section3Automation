@@ -19,7 +19,7 @@ function getSchema(isEdit) {
     title: yup.string().required('Last Name is required'),
     categories: yup.array().of(yup.string()).required("At least one category must be selected"),
     description: yup.string().required('Description cannot be empty'),
-    rent_duration: yup.string().required('Need to select an option'),
+    rent_duration_type: yup.string().required('Need to select an option'),
   }
 
   const addSchemaObject = {

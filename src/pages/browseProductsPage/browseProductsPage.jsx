@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import additionalProducts from 'testData/additionalProducts';
-import { loadAllProducts } from 'slices';
 import { ProductCard } from 'shared/components';
 import { randomIdGenerator } from 'utils';
 
@@ -22,12 +21,7 @@ const BrowseProductsPage = () => {
   const userProducts = useSelector((state) => state.userProducts);
   const allProducts = useSelector((state) => state.allProducts);
   const [showLoader, setShowLoader] = useState(false);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-
-  useEffect(() => {
-    dispatch(loadAllProducts([...additionalProducts, ...userProducts]));
-    setFilteredProducts([...additionalProducts, ...userProducts]);
-  }, []);
+  const [filteredProducts, setFilteredProducts] = useState(allProducts);
 
   const loadButtonOnClickHandler = () => {
     setShowLoader(true);
@@ -77,8 +71,8 @@ const BrowseProductsPage = () => {
         }
       });
 
-      if (data.rent_duration) {
-        updatedFilteredProducts = updatedFilteredProducts.filter(fp => fp.rent_duration === data.rent_duration);
+      if (data.rent_duration_type) {
+        updatedFilteredProducts = updatedFilteredProducts.filter(fp => fp.rent_duration_type === data.rent_duration_type);
       }
     }
 
@@ -103,7 +97,7 @@ const BrowseProductsPage = () => {
             <StyledProductCardHolder key={randomIdGenerator()}>
               <ProductCard
                 product={product}
-                onClick={() => navigate(`/edit-product/${product.id}`)}
+                onClick={() => navigate(`/product-details/${product.id}`)}
               />
             </StyledProductCardHolder>
           )
