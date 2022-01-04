@@ -10,15 +10,20 @@ const allProductsSlice = createSlice({
       const productIndexToRent = state.findIndex(p => p.id === action.payload.id);
       state[productIndexToRent] = {
         ...state[productIndexToRent],
-        rent_start_time: action.payload.rent_start_time,
-        rent_end_time: action.payload.rent_end_time
+        rent_history: [ ...state[productIndexToRent].rent_history, { start_date: action.payload.start_date, end_date: action.payload.end_date }],
       };
 
       return state;
     },
-    buyProduct(state, action) {
-      const productIndexToBuy = state.findIndex(p => p.id === action.payload.id);
-      state[productIndexToBuy] = { ...state[productIndexToBuy], is_bought: true };
+    purchaseProduct(state, action) {
+      const productIndexToBuy = state.findIndex(p => p.id === action.payload);
+      state[productIndexToBuy] = { ...state[productIndexToBuy], is_purchased: true };
+
+      return state;
+    },
+    addViewToProduct(state, action) {
+      const productIndexToBuy = state.findIndex(p => p.id === action.payload);
+      state[productIndexToBuy].views = state[productIndexToBuy].views + 1;
 
       return state;
     },
@@ -30,6 +35,6 @@ const allProductsSlice = createSlice({
   }
 })
 
-export const { rentProduct, buyProduct, loadAllProducts } = allProductsSlice.actions
+export const { rentProduct, purchaseProduct, loadAllProducts, addViewToProduct } = allProductsSlice.actions
 
 export default allProductsSlice.reducer

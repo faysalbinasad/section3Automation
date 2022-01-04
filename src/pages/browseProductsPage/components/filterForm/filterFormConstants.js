@@ -40,7 +40,7 @@ const INITIAL_FILTER_FORM_VALUES = {
   max_buy_range: null,
   min_rent_range: null,
   max_rent_range: null,
-  rent_duration: '',
+  rent_duration_type: '',
 }
 
 export { CATEGORY_OPTIONS, INITIAL_FILTER_FORM_VALUES };

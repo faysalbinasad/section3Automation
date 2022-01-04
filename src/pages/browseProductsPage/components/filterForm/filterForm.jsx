@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 import appUser from 'testData/user.json';
 import { CustomInput, CustomDropdown, CustomCheckbox } from 'shared/components';
-import { RENT_DURATION_OPTIONS } from 'shared/constants';
+import { RENT_DURATION_TYPE_OPTIONS } from 'shared/constants';
 import { logIn, loadUser } from 'slices/currentUser';
 import { loadProducts } from 'slices/userProducts';
 
@@ -115,24 +115,26 @@ const FilterForm = ({ onSubmitHandler, resetFilteredProducts }) => {
           </StyledCheckboxHolder>
           {
             isRentFilters &&
-            <Form.Group widths="equal">
-              <CustomInput
-                placeholder="Min"
-                name="min_rent_range"
+            <>
+              <Form.Group widths="equal">
+                <CustomInput
+                  placeholder="Min"
+                  name="min_rent_range"
+                />
+                <CustomInput
+                  placeholder="Max"
+                  name="max_rent_range"
+                />
+              </Form.Group>
+              <CustomDropdown
+                name="rent_duration_type"
+                selection
+                options={RENT_DURATION_TYPE_OPTIONS}
+                labelName="Rent duration"
+                value={methods.getValues().rent_duration_type}
               />
-              <CustomInput
-                placeholder="Max"
-                name="max_rent_range"
-              />
-            </Form.Group>
+            </>
           }
-          <CustomDropdown
-            name="rent_duration"
-            selection
-            options={RENT_DURATION_OPTIONS}
-            labelName="Rent duration"
-            value={methods.getValues().rent_duration}
-          />
           <StyledButtonsHolder>
             <StyledClearButtonHolder>
             <Button onClick={() => clearFormValues()}>Clear</Button>

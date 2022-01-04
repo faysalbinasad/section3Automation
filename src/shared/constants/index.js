@@ -1,4 +1,4 @@
-const RENT_DURATION_OPTIONS = [
+const RENT_DURATION_TYPE_OPTIONS = [
   {
     key: 1,
     text: 'Daily',
@@ -26,4 +26,4 @@ const RENT_DURATION_OPTIONS = [
   },
 ]
 
-export { RENT_DURATION_OPTIONS };
+export { RENT_DURATION_TYPE_OPTIONS };

@@ -8,7 +8,7 @@ import { ProductCard } from 'shared/components';
 import { randomIdGenerator } from 'utils';
 import { deleteProduct } from 'slices';
 import { useModal } from 'hooks';
-import CustomModal from 'shared/components/customModal/customModal';
+import { CustomModal } from 'shared/components';
 
 import { StyledProductList, StyledProductCardHolder, StyledButtonHolder } from './userProductListPage.styles';
 
