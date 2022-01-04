@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 
 import appUser from 'testData/user.json';
 import { CustomInput, CustomDropdown, CustomCheckbox } from 'shared/components';
+import { RENT_DURATION_OPTIONS } from 'shared/constants';
 import { logIn, loadUser } from 'slices/currentUser';
 import { loadProducts } from 'slices/userProducts';
 
@@ -54,7 +55,8 @@ const FilterForm = ({ onSubmitHandler, resetFilteredProducts }) => {
     methods.setValue('is_rent_filter_turned_on', checked)
   }
 
-  // NOTE: Workaround to resetting form. WE should just call methods.reset() but its not working
+  // NOTE: Workaround to resetting form. WE should just call methods.reset() but its not working.
+  // This causes multiple re-rendering. Inefficient
   const clearFormValues = () => {
     methods.setValue('title', '', { shouldDirty: false });
     methods.setValue('min_buy_range', '', { shouldDirty: false });
@@ -124,6 +126,13 @@ const FilterForm = ({ onSubmitHandler, resetFilteredProducts }) => {
               />
             </Form.Group>
           }
+          <CustomDropdown
+            name="rent_duration"
+            selection
+            options={RENT_DURATION_OPTIONS}
+            labelName="Rent duration"
+            value={methods.getValues().rent_duration}
+          />
           <StyledButtonsHolder>
             <StyledClearButtonHolder>
             <Button onClick={() => clearFormValues()}>Clear</Button>

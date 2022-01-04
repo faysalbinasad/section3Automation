@@ -55,11 +55,31 @@ const BrowseProductsPage = () => {
     }
 
     if (data.is_buy_filter_turned_on) {
-      updatedFilteredProducts = updatedFilteredProducts.filter(fp => fp.purchase_price > data.min_buy_range && fp.purchase_price < data.max_buy_range);
+      updatedFilteredProducts = updatedFilteredProducts.filter(fp => {
+        if (data.min_buy_range && data.max_buy_range) {
+          return fp.purchase_price > parseInt(data.min_buy_range) && fp.purchase_price < parseInt(data.max_buy_range);
+        } else if (data.min_buy_range) {
+          return fp.purchase_price > parseInt(data.min_buy_range);
+        } else {
+          return fp.purchase_price < parseInt(data.max_buy_range)
+        }
+      });
     }
 
     if (data.is_rent_filter_turned_on) {
-      updatedFilteredProducts = updatedFilteredProducts.filter(fp => fp.rent_price >= data.min_rent_range && fp.rent_price <= data.max_rent_range);
+      updatedFilteredProducts = updatedFilteredProducts.filter(fp => {
+        if (data.min_rent_range && data.max_rent_range) {
+          return fp.rent_price >= parseInt(data.min_rent_range) && fp.rent_price <= parseInt(data.max_rent_range);
+        } else if (data.min_rent_range) {
+          return fp.rent_price >= parseInt(data.min_rent_range);
+        } else {
+          return fp.rent_price <= parseInt(data.max_rent_range)
+        }
+      });
+
+      if (data.rent_duration) {
+        updatedFilteredProducts = updatedFilteredProducts.filter(fp => fp.rent_duration === data.rent_duration);
+      }
     }
 
     setFilteredProducts(updatedFilteredProducts);

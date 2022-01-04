@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CustomInput, CustomTextArea, CustomDropdown } from 'shared/components';
+import { RENT_DURATION_OPTIONS } from 'shared/constants';
 import { addProduct, editProduct } from 'slices/userProducts';
 
 import {
@@ -15,9 +16,7 @@ import {
   StyledPurchaseOptions, StyledRentSection, StyledRentPriceInputHolder
 } from './upsertProductForm.styles';
 import {convertDataToDropdownOptions, convertCategoriesForSubmission, getSchema } from './upsertProductFormHelpers';
-import { RENT_DURATION_OPTIONS, INITIAL_UPSERT_PRODUCT_FORM_VALUES } from './upsertProductFormConstants';
-
-
+import { INITIAL_UPSERT_PRODUCT_FORM_VALUES } from './upsertProductFormConstants';
 
 const UpsertProductForm = ({ isEdit, product }) => {
   const dispatch = useDispatch();
