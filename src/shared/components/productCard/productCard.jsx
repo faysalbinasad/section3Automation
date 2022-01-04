@@ -6,7 +6,7 @@ import {
   StyledDescription, StyledCardFooter, StyledMainContent, StyledHeader,
 } from './productCard.styles';
 
-const ProductCard = ({ product, deleteButtonHandler }) => {
+const ProductCard = ({ product, deleteButtonHandler, onClick }) => {
   const {
     id, title, description, categories, created_at, views, purchase_price, rent_price,
     rent_duration
@@ -16,19 +16,19 @@ const ProductCard = ({ product, deleteButtonHandler }) => {
     <StyledContainer>
       <StyledMainContent>
         <StyledHeader>
-          <StyledTitle>{title}</StyledTitle>
+          <StyledTitle onClick={onClick}>{title}</StyledTitle>
           { deleteButtonHandler &&
             <Button icon="trash" onClick={() => deleteButtonHandler()}/>
           }
         </StyledHeader>
-        <StyledCategories>Categories: {categories.map(c => c.name).join(", ")}</StyledCategories>
-        <StyledPriceHolder>
+        <StyledCategories onClick={onClick}>Categories: { categories.length > 0 ? categories.map(c => c.name).join(", "): "N/A"}</StyledCategories>
+        <StyledPriceHolder onClick={onClick}>
           <StyledPurchasePrice>Price: ${purchase_price}</StyledPurchasePrice>
           <div>Rent: ${rent_price} {rent_duration}</div>
         </StyledPriceHolder>
-        <StyledDescription>{description}</StyledDescription>
+        <StyledDescription onClick={onClick}>Description: {description}</StyledDescription>
       </StyledMainContent>
-      <StyledCardFooter>
+      <StyledCardFooter onClick={onClick}>
         <div>
           Date posted: { created_at }
         </div>

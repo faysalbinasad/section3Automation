@@ -40,8 +40,8 @@ const NavigationBar = () => {
           onClick={handleItemClick}
         />
         <Menu.Item
-          name='all-products'
-          active={activeItem === 'all-products'}
+          name='browse-products'
+          active={activeItem === 'browse-products'}
           onClick={handleItemClick}
         />
         <Menu.Item

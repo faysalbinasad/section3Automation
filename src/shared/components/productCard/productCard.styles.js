@@ -7,6 +7,7 @@ const StyledContainer = styled(Container)`
   border-radius: 5px;
   max-height: 250px;
   flex-direction: column;
+  cursor: pointer;
 
   && {
     display: flex;
