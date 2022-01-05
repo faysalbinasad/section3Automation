@@ -9,7 +9,6 @@ import format from 'date-fns/format';
 import { useForm } from "react-hook-form";
 
 import { addViewToProduct, purchaseProduct, rentProduct } from 'slices/allProducts';
-import { UpsertProductForm } from 'shared/components';
 import { CustomModal } from 'shared/components';
 import { useModal } from 'hooks';
 
@@ -115,14 +114,6 @@ const ProductDetailsPage = (props) => {
     dispatch(rentProduct({ id: currentProduct.id, ...data }));
     setCurrentProduct({ ...currentProduct, rent_history: [...currentProduct.rent_history, data]});
     setRentModalOpen(false);
-  }
-
-  const onSubmit = (data, e) => {
-    console.log("TEST", data);
-  }
-
-  const onError = (data, e) => {
-    console.log("ERROR", data);
   }
 
   if (!currentProduct) {

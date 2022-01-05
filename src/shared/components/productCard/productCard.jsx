@@ -8,7 +8,7 @@ import {
 
 const ProductCard = ({ product, deleteButtonHandler, onClick }) => {
   const {
-    id, title, description, categories, created_at, views, purchase_price, rent_price,
+    title, description, categories, created_at, views, purchase_price, rent_price,
     rent_duration_type
   } = product;
 

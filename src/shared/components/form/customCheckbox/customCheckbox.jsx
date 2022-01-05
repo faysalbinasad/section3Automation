@@ -3,7 +3,7 @@ import { Form, Checkbox } from 'semantic-ui-react';
 import { useFormContext } from 'react-hook-form';
 
 const CustomCheckbox = ({ labelName, name, ...rest }) => {
-  const { register, setValue, formState: { errors } } = useFormContext();
+  const { register } = useFormContext();
 
   return(
     <Form.Field>
