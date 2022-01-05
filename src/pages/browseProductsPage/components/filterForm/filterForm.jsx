@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
-import { Button, Form, Header, Checkbox } from 'semantic-ui-react';
+import { Button, Form, Header } from 'semantic-ui-react';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, FormProvider } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, batch } from 'react-redux';
-import { toast } from 'react-toastify';
 
-import appUser from 'testData/user.json';
 import { CustomInput, CustomDropdown, CustomCheckbox } from 'shared/components';
 import { RENT_DURATION_TYPE_OPTIONS } from 'shared/constants';
-import { logIn, loadUser } from 'slices/currentUser';
-import { loadProducts } from 'slices/userProducts';
 
 import {
-  StyledFilterFormBorder, StyledFilterFormContainer, StyledButtonsHolder, StyledHeaderHolder,
+  StyledFilterFormBorder, StyledButtonsHolder, StyledHeaderHolder,
   StyledClearButtonHolder, StyledCheckboxHolder,
 } from './filterForm.styles';
 import { CATEGORY_OPTIONS, INITIAL_FILTER_FORM_VALUES } from './filterFormConstants';
@@ -28,8 +22,6 @@ const filterFormSchema = yup.object().shape({
 
 const FilterForm = ({ onSubmitHandler, resetFilteredProducts }) => {
   const methods = useForm({ defaultValues: INITIAL_FILTER_FORM_VALUES, resolver: yupResolver(filterFormSchema) });
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [isBuyFilters, setIsBuyFilters] = useState(false)
   const [isRentFilters, setIsRentFilters] = useState(false)
 

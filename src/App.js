@@ -1,10 +1,10 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { RequireAuth, NavigationBar } from 'shared/components';
-import { NOT_LOGGED_IN_STATUS } from 'slices/currentUser';
+import { NOT_LOGGED_IN_STATUS, LOGGED_IN_STATUS } from 'slices/currentUser';
 
 import {
   SignInPage, RegistrationPage, UserProductListPage, AccountSettingsPage, AddProductPage,
@@ -13,15 +13,14 @@ import {
 import { StyledAppContainer } from './App.styles';
 
 function App() {
-  const { pathname } = useLocation();
   const { status } = useSelector((state) => state.currentUser);
   return (
     <>
       {
-        !['/', '/signin', '/registration'].includes(pathname) &&
+        status === LOGGED_IN_STATUS &&
         <NavigationBar />
       }
-      <StyledAppContainer isPreLogin={['/signin', '/registration', '/'].includes(pathname)}>
+      <StyledAppContainer isPreLogin={status === NOT_LOGGED_IN_STATUS}>
         <Routes>
           <Route
             path="/"

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector, batch } from 'react-redux';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Button, Loader } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -16,7 +15,6 @@ import {
 } from './browseProductsPage.styles';
 
 const BrowseProductsPage = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const userProducts = useSelector((state) => state.userProducts);
   const allProducts = useSelector((state) => state.allProducts);

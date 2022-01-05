@@ -1,6 +1,5 @@
 import React from 'react';
-import { Button, Form, Dropdown } from 'semantic-ui-react';
-import * as yup from 'yup';
+import { Button, Form } from 'semantic-ui-react';
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from "react-router-dom";

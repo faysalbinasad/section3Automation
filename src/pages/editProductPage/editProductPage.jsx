@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header } from 'semantic-ui-react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -10,7 +10,6 @@ import { StyledPageContainer } from 'shared/styles';
 
 const EditProductPage = (props) => {
   const params = useParams();
-  const navigate = useNavigate();
   const userProducts = useSelector((state) => state.userProducts);
 
   if (isNaN(parseInt(params.productId))) {
