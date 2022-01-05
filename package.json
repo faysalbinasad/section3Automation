@@ -1,4 +1,5 @@
 {
+  "homepage": "https://erahmanSazim.github.io/teebay-buggy",
   "name": "teebay-buggy",
   "version": "0.1.0",
   "private": true,
@@ -28,6 +29,8 @@
     "yup": "^0.32.11"
   },
   "scripts": {
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -52,6 +55,7 @@
     ]
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^2.0.2"
+    "babel-plugin-styled-components": "^2.0.2",
+    "gh-pages": "^3.2.3"
   }
 }
