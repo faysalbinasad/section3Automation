@@ -1,4 +1,4 @@
-### 'npm run cypress:open'
+### `npm run cypress:open`
 
 Use this script in the terminal of VS Code Studio to run the Cypress Test Runner in headed mode.
 
