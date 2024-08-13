@@ -49,21 +49,5 @@ cy.get('button.ui.blue.button[type="submit"]').click({ force: true });
   .should('contain.text', 'New product added!');
 
 
-
-
-
-/*     // Fill out the form fields
-    cy.get('input[name="productName"]').type('New Product');
-    cy.get('input[name="productDescription"]').type('This is a description of the new product.');
-    cy.get('input[name="productPrice"]').type('19.99');
-    cy.get('input[name="productCategory"]').type('Electronics');
-
-    // Click the "Add Product" button to submit the form
-    cy.get('button').contains('Add Product').click();
-
-    // Assert that the product was added successfully
-    cy.url().should('include', '/my-products');
-    cy.contains('New Product').should('be.visible');
-    cy.contains('This is a description of the new product.').should('be.visible'); */
   });
 });

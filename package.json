@@ -59,6 +59,7 @@
   "devDependencies": {
     "babel-plugin-styled-components": "^2.0.2",
     "cypress": "^13.13.2",
+    "cypress-plugin-tab": "^1.0.5",
     "gh-pages": "^3.2.3"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
