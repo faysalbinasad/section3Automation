@@ -1,3 +1,7 @@
+### 'npm run cypress:open'
+
+Use this script in the terminal of VS Code Studio to run the Cypress Test Runner in headed mode.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
