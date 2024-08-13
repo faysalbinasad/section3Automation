@@ -1,7 +1,25 @@
+### `Pre-requisite`
+
+Node.js and Npm must be installed in the PC.
+
+After installing Node.js, Npm will be automatically installed.
+
+After installing the Node.js verify the Node.js and Npm version check the versions using the following steps
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+1) Press Win+R
+2) Type cmd
+3) Hit Enter
+4) Type node --version
+5) Hit Enter (It will show the version of Node.js if it is correctly installed)
+6) Type npm --version
+7) Hit Enter (It will show the version of Npm if Node.js is correctly installed)
+
+Note: If you get any error to check the versions of Npm or Node.js, try after installing different versions of Node.js (Older version may work)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 ### `npm run cypress:open`
 
 Use this script in the terminal of VS Code Studio to run the Cypress Test Runner in headed mode.
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
