@@ -61,5 +61,21 @@ describe('Teebay-Buggy Add and Delete Products Test', () => {
 
     // Assertion to check that 5 products remain
     cy.get('.sc-bXCLTC.etBlfP').should('have.length', 5);
+
+    cy.wait(2000);
+
+    // Logout operation
+    cy.get('.right > .item').click(); // Click the logout button
+
+    cy.wait(2000);
+
+    // Click the confirmation button to complete the logout
+    cy.get('.actions > .blue').click();
+
+    cy.wait(5000);
+
+    // Assertion to check if redirected to the sign-in page
+    cy.url().should('include', '/signin');
+
   });
 });

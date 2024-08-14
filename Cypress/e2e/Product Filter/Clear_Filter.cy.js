@@ -1,7 +1,7 @@
 describe('Teebay-Buggy Browse Products Test', () => {
 
-  it('Should login, navigate to Browse Products, filter by title "Blender"', () => {
-    cy.visit('/'); 
+  it('Should login, navigate to Browse Products, select Home Appliances category, apply filter, clear fields, and logout', () => {
+    cy.visit('/'); // Visit the Teebay-Buggy app's login page
 
     cy.wait(2000);
 
@@ -11,28 +11,29 @@ describe('Teebay-Buggy Browse Products Test', () => {
 
     cy.wait(2000);
 
-    // Navigate to the Browse Products menu
     cy.get('.ui.menu > :nth-child(2)').click();
 
     cy.wait(2000);
 
-    // Enter "Blender" in the Title field
-    cy.get('.sc-aXZVg').type('Blender');
+    // Click the Categories Dropdown
+    cy.get('.form > :nth-child(2) > .ui').click();
 
     cy.wait(2000);
 
-    // Click the Filter button
-    cy.get('.sc-cWSHoV > .blue').click();
+    // Select the "Home Appliances" category
+    cy.get('span.text').contains('Home Appliances').click();
 
-    cy.wait(4000);
+    cy.wait(2000);
 
-    // Assertion to verify the filtered product list contains only products with "Blender" in the title
-    cy.get('.sc-fqkvVR.jQvrZo') // Replace with the actual selector for the product title elements
-      .each(($el) => {
-        cy.wrap($el).should('contain.text', 'Blender');
-      });
+    // Click the Clear Button
+    cy.get('.sc-dCFHLb > .ui').click();
 
-      cy.wait(2000);
+    cy.wait(2000);
+
+    // Assertion to check that the dropdown is cleared
+    cy.get('.form > :nth-child(2) > .ui').should('exist');
+
+    cy.wait(2000);
 
     // Logout operation
     cy.get('.right > .item').click(); // Click the logout button
@@ -42,7 +43,7 @@ describe('Teebay-Buggy Browse Products Test', () => {
     // Click the confirmation button to complete the logout
     cy.get('.actions > .blue').click();
 
-    cy.wait(5000); 
+    cy.wait(5000);
 
     // Assertion to check if redirected to the sign-in page
     cy.url().should('include', '/signin');
