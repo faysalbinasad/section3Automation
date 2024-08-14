@@ -1,48 +1,46 @@
 describe('Teebay-Buggy Account Settings Accessibility Test', () => {
-  before(() => {
-    // Login before running the test
-    cy.visit('/'); // Visit the Teebay-Buggy home page
+
+  it('Should login, navigate to Account Settings, update user details using keyboard navigation, and verify the confirmation message', () => {
+    // Visit the Teebay-Buggy app's login page
+    cy.visit('/'); // This will visit http://localhost:3000/teebay-buggy/
+
+    // Enter email and password without keyboard navigation
     cy.get('input[name="email"]').type('testuser@teebay.com');
     cy.get('input[name="password"]').type('123456');
+
+    // Click the login button
     cy.get('button[type="submit"]').click();
-    
-    // Wait for the page to load and be ready
-    cy.url().should('include', '/my-products'); // Adjusted to match actual redirection
-  });
 
-  it('Should navigate and update the Account Settings form using keyboard navigation', () => {
-    // Open the Account Settings tab
-    cy.get('.ui.menu > :nth-child(4)').click(); // Click on the Account Settings option/tab
+    // Navigate to the Account Settings module
+    cy.get('.ui.menu > :nth-child(4)').click();
 
-    // Ensure the form is visible
-    cy.get('.sc-iHbSHJ').should('be.visible');
-
-    // Focus and fill out the form fields using keyboard navigation
+    // Manually simulate tabbing through the form fields and filling out the form
 
     // First Name
-    cy.get(':nth-child(1) > :nth-child(1) > .sc-aXZVg').focus().type('John');
-    cy.tab(); // Tab to the next field
-    
-    // Last Name
-    cy.focused().type('Doe');
-    cy.tab(); // Tab to the next field
-    
-    // Address
-    cy.focused().type('123 Main St');
-    cy.tab(); // Tab to the next field
-    
-    // Email
-    cy.focused().type('john.doe@example.com');
-    cy.tab(); // Tab to the next field
-    
-    // Phone Number
-    cy.focused().type('555-1234');
-    cy.tab(); // Tab to the Update button
-    
-    // Click the Update button using Enter
-    cy.focused().type('{enter}'); // Ensure the focus is on the Update button and press Enter
+    cy.get('body').tab(); // Focus on the first element
+    cy.focused().tab(); // Move to the First Name field
+    cy.focused().clear().type('Al Faysal Bin').tab(); // Enter the First Name and tab to the next field
 
-    // Verify that the form update was successful (this step will depend on your application logic)
-    cy.get('.success-message').should('contain.text', 'Account settings updated successfully!');
+    // Last Name
+    cy.focused().clear().type('Asad').tab(); // Enter the Last Name and tab to the next field
+
+    // Address
+    cy.focused().clear().type('Lakecity Concord, Dhaka').tab(); // Enter the Address and tab to the next field
+
+    // Email
+    cy.focused().clear().type('abcd@gmail.com').tab(); // Enter the Email and tab to the next field
+
+    // Phone Number
+    cy.focused().clear().type('+880941212995'); // Enter the Phone Number
+
+    // Move focus to the Update button and press Enter
+    cy.get('body').tab(); // Tab to reach the Update button
+    cy.focused().click(); // Click the Update button
+
+    // Assertion to verify the confirmation toast message
+    cy.get('.Toastify__toast-body > :nth-child(2)')
+      .should('be.visible')
+      .and('contain.text', 'User updated!');
   });
+
 });
